@@ -34,10 +34,19 @@
                     <p>تخصص: <span>السباكة</span></p>
                     <p>منطقة: <span>الرياض</span></p>
                     <p>تقييم: <span>4.5/5</span></p>
-                    <button class="btn-primary">حجز موعد</button>
-                    <button class="btn-secondary">تواصل مباشرة</button>
+                    <a href="Booking Page.html"><button  class="btn-primary" >حجز موعد</button></a>
+                    <button id="contact-btn" class="btn-secondary">تواصل مباشرة</button>
                 </div>
             </div>
+            <!-- النافذة المنبثقة -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span id="close-popup" class="close-popup">&times;</span>
+        <h2>مرحباً!</h2>
+        <p>شكراً لتواصلك معنا.</p>
+        <p>رقم الهاتف: 123-456-7890</p>
+    </div>
+</div>
 
             <section class="services-section">
                 <h2>الخدمات المقدمة</h2>
@@ -49,9 +58,15 @@
                 </ul>
             </section>
 
-            <section class="specialties-section">
-                <h2>التخصصات</h2>
-                <p>السباكة العامة، إصلاح أنابيب المياه، تركيب السخانات، الكشف عن التسريبات.</p>
+            <section class="bookings-section">
+                <h2>قائمة الأشخاص الذين طلبوا الحجز</h2>
+                <ul>
+                    <li>أحمد السيد - تاريخ الحجز: 15 أغسطس 2024</li>
+                    <li>خالد محمود - تاريخ الحجز: 20 أغسطس 2024</li>
+                    <li>منى علي - تاريخ الحجز: 22 أغسطس 2024</li>
+                    <li>سارة إبراهيم - تاريخ الحجز: 24 أغسطس 2024</li>
+                    <!-- يمكن إضافة المزيد من الحجز -->
+                </ul>
             </section>
 
             <section class="reviews-section">
@@ -75,4 +90,47 @@
         </div>
     </footer>
 </body>
+<script>
+    // الحصول على العناصر
+const contactBtn = document.getElementById('contact-btn');
+const popup = document.getElementById('popup');
+const closePopup = document.getElementById('close-popup');
+
+// عرض النافذة المنبثقة عند الضغط على الزر
+contactBtn.addEventListener('click', function() {
+    popup.style.display = 'flex';
+});
+
+// إخفاء النافذة المنبثقة عند الضغط على علامة الإغلاق
+closePopup.addEventListener('click', function() {
+    popup.style.display = 'none';
+});
+
+// إخفاء النافذة المنبثقة عند الضغط خارجها
+window.addEventListener('click', function(event) {
+    if (event.target === popup) {
+        popup.style.display = 'none';
+    }
+});
+
+
+
+
+// -----------------------------------------------------
+
+
+
+    // افترض أن لدينا مفتاحًا في localStorage يحدد ما إذا كان المستخدم هو الحرفي
+    const isProfessional = localStorage.getItem('isProfessional');
+
+    // الحصول على عنصر القسم
+    const bookingsSection = document.getElementById('bookings-section');
+
+    // إذا كان المستخدم هو الحرفي، قم بعرض القسم
+    if (isProfessional === 'true') {
+        bookingsSection.style.display = 'block';
+    }
+
+
+</script>
 </html>

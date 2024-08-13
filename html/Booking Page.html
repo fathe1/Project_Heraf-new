@@ -39,6 +39,12 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="artisan-name">اسم الحرفي</label>
+                    <select id="artisan-name" name="artisan-name" required>
+                        <option value="">اختر اسم الحرفي</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="date">التاريخ</label>
                     <input type="date" id="date" name="date" required>
                 </div>
@@ -50,7 +56,6 @@
                     <label for="payment-method">طريقة الدفع</label>
                     <select id="payment-method" name="payment-method" required>
                         <option value="">اختر طريقة الدفع</option>
-                        <option value="credit-card">بطاقة ائتمان</option>
                         <option value="cash">نقداً عند الاستلام</option>
                     </select>
                 </div>
@@ -65,7 +70,7 @@
         <div class="container2">
             <h2>ملخص الحجز</h2>
             <div class="summary-details">
-                <p><strong>الحرفي المختار:</strong> محمد علي - سباكة</p>
+                <p><strong>الحرفي المختار:</strong> <span id="selected-artisan">محمد علي - سباكة</span></p>
                 <p><strong>تاريخ الحجز:</strong> 25 أغسطس 2024</p>
                 <p><strong>الوقت:</strong> 10:00 صباحاً</p>
                 <p><strong>طريقة الدفع:</strong> بطاقة ائتمان</p>
@@ -79,6 +84,38 @@
         </div>
     </footer>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        const artisans = {
+            plumbing: ["محمد علي", "أحمد سعيد", "كريم حسن"],
+            electricity: ["خالد عادل", "محمود يوسف", "عمرو فؤاد"],
+            carpentry: ["علي إبراهيم", "ياسر محمود", "حسن أحمد"]
+        };
+
+        const serviceTypeSelect = document.getElementById("service-type");
+        const artisanNameSelect = document.getElementById("artisan-name");
+        const selectedArtisanSpan = document.getElementById("selected-artisan");
+
+        serviceTypeSelect.addEventListener("change", function() {
+            const selectedService = this.value;
+            const artisansList = artisans[selectedService] || [];
+
+            // Clear previous options
+            artisanNameSelect.innerHTML = '<option value="">اختر اسم الحرفي</option>';
+
+            // Populate new options
+            artisansList.forEach(artisan => {
+                const option = document.createElement("option");
+                option.value = artisan;
+                option.textContent = artisan;
+                artisanNameSelect.appendChild(option);
+            });
+        });
+
+        artisanNameSelect.addEventListener("change", function() {
+            const selectedService = serviceTypeSelect.options[serviceTypeSelect.selectedIndex].textContent;
+            const selectedArtisan = this.value;
+            selectedArtisanSpan.textContent = `${selectedArtisan} - ${selectedService}`;
+        });
+    </script>
 </body>
 </html>
