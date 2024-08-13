@@ -55,11 +55,46 @@
         <div class="profile-bookings">
             <h3>الحجزات</h3>
             <ul class="booking-list">
-                <li class="booking-item">الحجز رقم 1 - 12/08/2024</li>
-                <li class="booking-item">الحجز رقم 2 - 15/08/2024</li>
+                <li class="booking-item" onclick="showBookingDetails('أحمد محمد', 'سباك', '12/08/2024', '10:00 صباحًا')">الحجز رقم 1 - 12/08/2024</li>
+                <li class="booking-item" onclick="showBookingDetails('محمود علي', 'كهربائي', '15/08/2024', '2:00 مساءً')">الحجز رقم 2 - 15/08/2024</li>
                 <!-- يمكنك إضافة المزيد من الحجزات هنا -->
             </ul>
         </div>
+        
+        <!-- Div to display booking details -->
+        <div id="booking-details" class="popup" style="display: none;">
+            <div class="popup-content">
+                <span id="close-popup" onclick="closePopup()">&times;</span>
+                <p id="booking-info"></p>
+            </div>
+        </div>        
+        
     </div>
 </body>
+
+<script>
+function showBookingDetails(name, profession, date, time) {
+    // بناء النص الذي سيعرض في النافذة المنبثقة، مع كل جزء في سطر منفصل
+    const details = `
+        <p><strong>الحجز مع:</strong> ${name}</p>
+        <p><strong>المهنة:</strong> ${profession}</p>
+        <p><strong>اليوم:</strong> ${date}</p>
+        <p><strong>الوقت:</strong> ${time}</p>
+    `;
+    
+    // عرض نافذة الحجز
+    document.getElementById('booking-details').style.display = 'flex';
+    
+    // وضع التفاصيل في الـ Div مع تفعيل تنسيق HTML
+    document.getElementById('booking-info').innerHTML = details;
+}
+
+function closePopup() {
+    // إخفاء النافذة المنبثقة
+    document.getElementById('booking-details').style.display = 'none';
+}
+
+
+
+</script>
 </html>
