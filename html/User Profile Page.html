@@ -28,7 +28,7 @@
     <div class="profile-container">
         <div class="profile-header">
             <h2>حسابي الشخصي</h2>
-            <a href="#" class="logout-btn">تسجيل الخروج</a>
+            <a href="#" id="logout-btn" class="logout-btn">تسجيل الخروج</a>
         </div>
         <div class="profile-info">
             <h3>معلومات الحساب</h3>
@@ -73,6 +73,13 @@
 </body>
 
 <script>
+
+document.getElementById('logout-btn').addEventListener('click', function() {
+    // تنفيذ عملية تسجيل الخروج، مثل حذف بيانات المستخدم من localStorage أو تنفيذ طلب تسجيل الخروج
+    localStorage.removeItem('isProfessional'); // على سبيل المثال
+    window.location.href = 'Login Page.html'; // إعادة التوجيه إلى صفحة تسجيل الدخول
+});
+
 function showBookingDetails(name, profession, date, time) {
     // بناء النص الذي سيعرض في النافذة المنبثقة، مع كل جزء في سطر منفصل
     const details = `

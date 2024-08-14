@@ -10,7 +10,7 @@
     <div class="auth-container">
         <div class="auth-card">
             <h2>إنشاء حساب جديد</h2>
-            <form id="signup-form" action="../php/signup.php" method="POST" class="auth-form">
+            <form id="signup-form" action="../php/Sign Up.php" method="POST" enctype="multipart/form-data" class="auth-form">
                 <div class="form-group">
                     <label for="username">اسم المستخدم</label>
                     <input type="text" id="username" name="username" required class="form-control">
@@ -38,10 +38,19 @@
                         <option value="professional">حرفي</option>
                     </select>
                 </div>
+                
+                <!-- حقل الحرفة -->
                 <div class="form-group" id="profession-field" style="display:none;">
                     <label for="profession">الحرفة</label>
                     <input type="text" id="profession" name="profession" class="form-control">
                 </div>
+                
+                <!-- حقل رفع الصورة -->
+                <div class="form-group" id="upload-field" style="display:none;">
+                    <label for="image">رفع صورة</label>
+                    <input type="file" id="image" name="image" class="form-control">
+                </div>
+                
                 <button type="submit" class="btn-primary">إنشاء حساب</button>
                 <p class="auth-switch">لديك حساب بالفعل؟ <a href="Login Page.html">تسجيل الدخول</a></p>
             </form>
@@ -51,22 +60,25 @@
     <script>
         const userTypeSelect = document.getElementById('user-type');
         const professionField = document.getElementById('profession-field');
+        const uploadField = document.getElementById('upload-field');
 
+        // عند تغيير نوع الحساب
         userTypeSelect.addEventListener('change', function() {
             if (this.value === 'professional') {
-                professionField.style.display = 'block';
+                professionField.style.display = 'block';  // إظهار حقل الحرفة
+                uploadField.style.display = 'block';  // إظهار حقل رفع الصورة
             } else {
-                professionField.style.display = 'none';
+                professionField.style.display = 'none';  // إخفاء حقل الحرفة
+                uploadField.style.display = 'none';  // إخفاء حقل رفع الصورة
             }
         });
 
         document.getElementById('signup-form').addEventListener('submit', function(event) {
-            event.preventDefault();
             const userType = document.getElementById('user-type').value;
             if (userType === 'professional') {
-                window.location.href = 'professional_dashboard.html';  // صفحة الحرفي
+                this.action = 'ProfessionalSignUp.php';  // توجيه إلى صفحة إنشاء حساب الحرفي
             } else {
-                window.location.href = '../php/profile user.php';  // صفحة المستخدم العادي
+                this.action = '../php/Sign Up.php';  // توجيه إلى صفحة إنشاء حساب المستخدم العادي
             }
         });
     </script>

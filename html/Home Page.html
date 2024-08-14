@@ -29,9 +29,15 @@
         <div class="container2">
             <h1>ابحث عن الحرفي المثالي بسهولة وسرعة</h1>
             <p>اكتشف أفضل الحرفيين في منطقتك واحجز خدماتهم مباشرة.</p>
-            <form action="#" method="GET" class="search-form">
-                <input type="text" name="search" placeholder="أدخل تخصص أو منطقة" class="search-input">
-                <button type="submit" class="search-btn">بحث</button>
+            <form action="serch.html" method="GET" class="search-form">
+                    <input type="text" id="specialty" name="specialty" placeholder="أدخل التخصص" 
+                    style="width: 20%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+                    <input type="text" id="region" name="region" placeholder="أدخل المنطقة" 
+                    style="width: 20%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+                    <button type="submit" class="search-btn" 
+                    style="width: 10%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; font-size: 18px; cursor: pointer; transition: background-color 0.3s ease;">
+                    بحث</button>
+                </form>
             </form>
         </div>
     </main>
@@ -63,5 +69,6 @@
     </footer>
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="serch.html"></script>
 </body>
 </html>

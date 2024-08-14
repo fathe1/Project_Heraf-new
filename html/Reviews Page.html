@@ -31,16 +31,16 @@
 
             <div class="filter-section">
                 <form action="#" method="GET" class="filter-form">
-                    <select name="craftsman" id="craftsman">
-                        <option value="">اختر الحرفي</option>
-                        <option value="craftsman1">حرفي 1</option>
-                        <option value="craftsman2">حرفي 2</option>
-                    </select>
-
                     <select name="service" id="service">
                         <option value="">اختر نوع الخدمة</option>
                         <option value="plumbing">سباكة</option>
                         <option value="electricity">كهرباء</option>
+                    </select>
+
+                    <select name="craftsman" id="craftsman">
+                        <option value="">اختر الحرفي</option>
+                        <option value="craftsman1">حرفي 1</option>
+                        <option value="craftsman2">حرفي 2</option>
                     </select>
 
                     <button type="submit" class="filter-btn">تصفية</button>
@@ -72,15 +72,7 @@
             <div class="add-review">
                 <h2>إضافة تقييم جديد</h2>
                 <form action="#" method="POST" class="add-review-form">
-                    <div class="form-group">
-                        <label for="craftsman">اختر الحرفي:</label>
-                        <select name="craftsman" id="craftsman">
-                            <option value="">اختر الحرفي</option>
-                            <option value="craftsman1">حرفي 1</option>
-                            <option value="craftsman2">حرفي 2</option>
-                        </select>
-                    </div>
-
+                    
                     <div class="form-group">
                         <label for="service">نوع الخدمة:</label>
                         <select name="service" id="service">
@@ -90,6 +82,16 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label for="craftsman">اختر الحرفي:</label>
+                        <select name="craftsman" id="craftsman">
+                            <option value="">اختر الحرفي</option>
+                            <option value="craftsman1">حرفي 1</option>
+                            <option value="craftsman2">حرفي 2</option>
+                        </select>
+                    </div>
+
+                
                     <div class="form-group">
                         <label for="rating">التقييم:</label>
                         <select name="rating" id="rating">
