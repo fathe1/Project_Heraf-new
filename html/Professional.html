@@ -49,15 +49,22 @@
     </div>
 </div>
 
-            <section class="services-section">
-                <h2>الخدمات المقدمة</h2>
-                <ul>
-                    <li>إصلاح الأنابيب</li>
-                    <li>تركيب السخانات</li>
-                    <li>صيانة دورية للحمامات</li>
-                    <li>الكشف عن تسريبات المياه</li>
-                </ul>
-            </section>
+<section class="services-section">
+    <h2>الخدمات المقدمة</h2>
+    <ul id="services-list">
+        <li>إصلاح الأنابيب</li>
+        <li>تركيب السخانات</li>
+        <li>صيانة دورية للحمامات</li>
+        <li>الكشف عن تسريبات المياه</li>
+    </ul>
+
+    <h3>أضف خدمة جديدة</h3>
+    <form id="add-service-form" action="../php/db_insert_service_Prof.php" method="post">
+        <label for="service-name">اسم الخدمة:</label>
+        <input type="text" id="service-name" name="service-name" required>
+        <button type="submit">أضف الخدمة</button>
+    </form>
+</section>
 
             <section class="bookings-section">
                 <h2>قائمة الأشخاص الذين طلبوا الحجز</h2>
@@ -121,15 +128,8 @@ window.addEventListener('click', function(event) {
         popup.style.display = 'none';
     }
 });
-
-
-
-
 // -----------------------------------------------------
-
-
-
-    // افترض أن لدينا مفتاحًا في localStorage يحدد ما إذا كان المستخدم هو الحرفي
+// افترض أن لدينا مفتاحًا في localStorage يحدد ما إذا كان المستخدم هو الحرفي
     const isProfessional = localStorage.getItem('isProfessional');
 
     // الحصول على عنصر القسم
@@ -141,4 +141,47 @@ window.addEventListener('click', function(event) {
     }
 
 </script>
+<script>
+    // جلب البيانات من الملف PHP
+    fetch('../php/select_Professional.php')
+        .then(response => response.json())
+        .then(data => {
+            // عرض البيانات على الصفحة
+            document.querySelector('.profile-img').src = data.profile.photo;
+            document.querySelector('.profile-info h1').textContent = data.profile.name;
+            document.querySelector('.profile-info span').textContent = data.profile.specialization;
+            document.querySelector('.profile-info p span').textContent = data.profile.location;
+            document.querySelector('.profile-info p span').textContent = data.average_rating + '/5';
+
+            // إضافة الخدمات إلى القائمة
+            const servicesList = document.getElementById('services-list');
+            data.services.forEach(service => {
+                const li = document.createElement('li');
+                li.textContent = service.name;
+                servicesList.appendChild(li);
+            });
+
+            // إضافة الحجوزات إلى القائمة
+            const bookingsList = document.querySelector('.bookings-section ul');
+            data.bookings.forEach(booking => {
+                const li = document.createElement('li');
+                li.textContent = `${booking.name} - تاريخ الحجز: ${booking.date} - رقم الهاتف: ${booking.phone}`;
+                bookingsList.appendChild(li);
+            });
+
+            // إضافة التقييمات إلى القسم
+            const reviewsSection = document.querySelector('.reviews-section');
+            data.reviews.forEach(review => {
+                const div = document.createElement('div');
+                div.classList.add('review');
+                div.innerHTML = `
+                    <p><strong>${review.name}:</strong> "${review.comment}"</p>
+                    <span class="rating">${'★'.repeat(review.rating) + '☆'.repeat(5 - review.rating)}</span>
+                `;
+                reviewsSection.appendChild(div);
+            });
+        })
+        .catch(error => console.error('حدث خطأ:', error));
+</script>
+
 </html>

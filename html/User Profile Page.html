@@ -35,29 +35,27 @@
             <form action="#">
                 <div class="form-group">
                     <label for="username">اسم المستخدم:</label>
-                    <input type="text" id="username" value="User123">
+                    <input type="text" id="username">
                 </div>
                 <div class="form-group">
                     <label for="email">البريد الإلكتروني:</label>
-                    <input type="email" id="email" value="user@example.com">
+                    <input type="email" id="email">
                 </div>
                 <div class="form-group">
-                    <label for="password">كلمة المرور:</label>
-                    <input type="password" id="password" value="********">
+                    <label for="phone">رقم الهاتف:</label>
+                    <input type="text" id="phone">
                 </div>
                 <div class="form-group">
                     <label for="location">الموقع:</label>
-                    <input type="text" id="location" value="المدينة/المنطقة">
+                    <input type="text" id="location">
                 </div>
-                <button type="submit" class="update-btn">تحديث المعلومات</button>
             </form>
         </div>
+
         <div class="profile-bookings">
             <h3>الحجزات</h3>
-            <ul class="booking-list">
-                <li class="booking-item" onclick="showBookingDetails('أحمد محمد', 'سباك', '12/08/2024', '10:00 صباحًا')">الحجز رقم 1 - 12/08/2024</li>
-                <li class="booking-item" onclick="showBookingDetails('محمود علي', 'كهربائي', '15/08/2024', '2:00 مساءً')">الحجز رقم 2 - 15/08/2024</li>
-                <!-- يمكنك إضافة المزيد من الحجزات هنا -->
+            <ul class="booking-list" id="booking-list">
+                <!-- سيتم إضافة الحجزات هنا ديناميكياً -->
             </ul>
         </div>
         
@@ -73,15 +71,38 @@
 </body>
 
 <script>
+// التحقق من وجود account_id في localStorage أو sessionStorage
+const account_id = localStorage.getItem('account_id') || sessionStorage.getItem('account_id');
 
-document.getElementById('logout-btn').addEventListener('click', function() {
-    // تنفيذ عملية تسجيل الخروج، مثل حذف بيانات المستخدم من localStorage أو تنفيذ طلب تسجيل الخروج
-    localStorage.removeItem('isProfessional'); // على سبيل المثال
-    window.location.href = 'Login Page.html'; // إعادة التوجيه إلى صفحة تسجيل الدخول
-});
+// تحقق إذا كان account_id موجودًا
+if (account_id) {
+    // استدعاء البيانات من ملف الـ PHP باستخدام account_id
+    fetch(`get_user_data.php?account_id=${account_id}`)
+        .then(response => response.json())
+        .then(data => {
+            // عرض بيانات المستخدم
+            document.getElementById('username').value = data.user.username;
+            document.getElementById('email').value = data.user.email;
+            document.getElementById('phone').value = data.user.phone;
+            document.getElementById('location').value = data.user.location;
 
+            // عرض الحجزات
+            const bookingList = document.getElementById('booking-list');
+            data.bookings.forEach((booking, index) => {
+                const listItem = document.createElement('li');
+                listItem.className = 'booking-item';
+                listItem.textContent = `الحجز رقم ${index + 1} - ${booking.date}`;
+                listItem.onclick = () => showBookingDetails(booking.name, booking.service_type, booking.date, booking.time);
+                bookingList.appendChild(listItem);
+            });
+        });
+} else {
+    // إذا لم يكن account_id موجودًا، قم بإعادة التوجيه إلى صفحة تسجيل الدخول
+    window.location.href = '#';
+}
+
+// وظائف عرض التفاصيل وإغلاق النافذة المنبثقة
 function showBookingDetails(name, profession, date, time) {
-    // بناء النص الذي سيعرض في النافذة المنبثقة، مع كل جزء في سطر منفصل
     const details = `
         <p><strong>الحجز مع:</strong> ${name}</p>
         <p><strong>المهنة:</strong> ${profession}</p>
@@ -89,19 +110,19 @@ function showBookingDetails(name, profession, date, time) {
         <p><strong>الوقت:</strong> ${time}</p>
     `;
     
-    // عرض نافذة الحجز
     document.getElementById('booking-details').style.display = 'flex';
-    
-    // وضع التفاصيل في الـ Div مع تفعيل تنسيق HTML
     document.getElementById('booking-info').innerHTML = details;
 }
 
 function closePopup() {
-    // إخفاء النافذة المنبثقة
     document.getElementById('booking-details').style.display = 'none';
 }
 
-
-
+document.getElementById('logout-btn').addEventListener('click', function() {
+    // إزالة account_id من التخزين عند تسجيل الخروج
+    localStorage.removeItem('account_id');
+    sessionStorage.removeItem('account_id');
+    window.location.href = 'Login Page.html';
+});
 </script>
 </html>
