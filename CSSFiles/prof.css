@@ -1,0 +1,538 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: rgb(130, 130, 130);
+  color: rgb(208, 250, 0);
+}
+
+body {
+  font-family: "work sans", sans-serif;
+}
+
+/* start variables */
+:root {
+  --mainColor: #ad893b;
+  --subColor: #997c54;
+}
+
+/* end variables */
+
+/* strat components */
+
+.center {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+/* end components */
+
+/* start header */
+header {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  /* background-color: #1b1b1bc7; */
+  background-color: #00000075;
+  color: var(--mainColor);
+}
+
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: #1b1b1bc7;/ */
+  margin-top: 1px;
+  position: relative;
+  max-height: 75px;
+  border-radius: 5px;
+}
+
+header .container .logo img {
+  margin-top: 10px;
+  width: 200px;
+  height: 135px;
+}
+
+header .container .links {
+  display: flex;
+  position: relative;
+}
+
+header .container .links ul {
+  list-style: none;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin-right: 50px;
+}
+
+header .container .toggle-menu {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+
+
+
+
+header .container .links ul li {
+  margin-right: 15px;
+  margin-left: 15px;
+
+}
+
+header .container .links ul li a {
+  text-decoration: none;
+}
+
+header .container .links i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 25px;
+}
+
+header .container .links ul li a,
+header .container .links i {
+  cursor: pointer;
+  color: var(--mainColor);
+}
+
+@media (max-width: 768px) {
+  header .container .links {
+    display: none;
+  }
+
+  /* header .container .toggle-menu:hover+.links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #00000075;
+    } */
+
+  header .container .links ul li a {
+    margin-right: 10px;
+  }
+}
+
+@media (min-width:768px) {
+  header .container .toggle-menu {
+    display: none;
+  }
+    header .container .links{
+      display: flex;
+    }
+}
+
+
+/* end header */
+
+/* start section 1 */
+
+.sec1 {
+  min-height: 100vh;
+  background-color: black;
+  color: var(--mainColor);
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.sec1 .container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: relative;
+  gap: 5px;
+}
+
+@media (max-width: 768px) {
+  .sec1 .container {
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, auto);
+    margin: 50px;
+  }
+
+  .sec1 .right::before {
+    display: none;
+  }
+
+  .sec1 .right {
+    padding: 15px;
+    margin-top: 50px;
+    grid-row: 1/2;
+  }
+
+  .sec1 .left {
+    grid-row: 2;
+    /* text-align: center; */
+    width: 100%;
+  }
+}
+
+.sec1 .left {
+  padding: 20px;
+  max-width: 100%;
+}
+
+.sec1 .right::before {
+  content: "";
+  position: absolute;
+  background-color: var(--mainColor);
+  width: 10px;
+  height: 100%;
+  top: 0;
+  /* left: 0; */
+}
+
+.sec1 .container .btn-skill {
+  font-size: 12px;
+  margin: 10px;
+  margin-top: 0px;
+  margin-left: 15px;
+  background-color: var(--mainColor);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.sec1 .container .btn-skill:hover {
+  background-color: var(--subColor);
+}
+
+.sec1 .container .Newskill {
+  z-index: 6;
+  position: absolute;
+  background-color: var(--mainColor);
+  color: black;
+  padding: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+}
+
+.sec1 .container .Newskill button {
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.sec1 .container .Newskill button:hover {
+  background-color: var(--subColor);
+}
+
+.sec1 .right {
+  padding: 20px;
+}
+
+.sec1 .right .photo {
+  display: flex;
+  justify-content: center;
+}
+
+.sec1 .right .photo img {
+  max-width: 70%;
+  border-radius: 10%;
+}
+
+.fa-star.one,
+.fa-star.two,
+.fa-star.three,
+.fa-star.four {
+  color: greenyellow;
+}
+
+/* end section 1 */
+
+/* start section 2 */
+
+.projects h2 {
+  margin-left: 15%;
+}
+
+.projects {
+  padding: 30px;
+  display: grid;
+  background-color: #434343;
+  background-color: var(--mainColor);
+  position: relative;
+}
+
+.projects .card {
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: rgb(220, 220, 220);
+  background-color: black;
+  border-radius: 20px;
+  margin: 15px;
+  gap: 5px;
+}
+
+@media (max-width: 768px) {
+  .projects .card {
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+.projects .card .left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.projects .card .left .img-proj {
+  margin-bottom: -4px;
+}
+
+.projects .card .left .img-proj img {
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+.projects .card .right {
+  text-align: center;
+}
+
+.projects .card .right h4 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.projects .card .right p {
+  padding: 15px;
+  line-height: 1.5;
+}
+
+.projects .add {
+  /* display: flex; */
+  margin: 0 auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5%;
+}
+
+/* .projects .add p {
+  cursor: pointer;
+} */
+
+.projects .add .fa-plus {
+  cursor: pointer;
+  border: solid 1px black;
+  border-radius: 50%;
+}
+
+/* add new projects */
+.projects .lay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #2c2c2ce3;
+  z-index: 5;
+  left: 0;
+  top: 0;
+}
+
+.projects .addForm {
+  z-index: 6;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--mainColor);
+  padding: 40px;
+  border-radius: 20px;
+}
+
+.projects .addForm input,
+.projects .addForm textarea {
+  padding: 5px;
+  margin: 10px;
+  border: 5px solid;
+  border-radius: 15px;
+}
+
+.projects .addForm label {
+  font-weight: bold;
+}
+
+.projects .addForm .sub {
+  cursor: pointer;
+}
+
+.projects .addForm .sub:hover {
+  background-color: var(--subColor);
+}
+
+.projects .lay,
+.projects .addForm {
+  display: none;
+}
+
+/* end section 2 */
+
+
+/* start comments */
+.comments {
+  position: relative;
+}
+
+.comments h2 {
+  margin-left: 15%;
+}
+
+.comments .container {
+  display: grid;
+  gap: 10px;
+  margin-top: 2%;
+}
+
+.comments .container .card {
+  padding: 15px;
+  display: grid;
+  gap: 5px;
+  background-color: #e3e3e3;
+  border-radius: 30px;
+
+  margin-bottom: 2%;
+}
+
+.comments .container .card .person {
+  display: flex;
+  align-items: center;
+}
+
+.comments .container .card .person img {
+  width: 80px;
+  border-radius: 50%;
+}
+
+.comments .container .card .person .name {
+  margin-left: 30px;
+  font-weight: bold;
+}
+
+.comments .container .card .cmnt {
+  margin-left: 10%;
+}
+
+/* add new comment */
+.comments .add {
+  margin: 10px auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5%;
+}
+
+/* .comments .add p {} */
+
+.comments .add .fa-plus {
+  cursor: pointer;
+  border: solid 1px black;
+  border-radius: 50%;
+}
+
+/* ratings in comment */
+
+.rating.not {
+  font-size: 24px;
+  color: black;
+}
+
+.rating.not .star {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+
+.rating.not .star:hover,
+.rating.not .star.active {
+  color: gold;
+}
+.rating.not .star.done{
+  color: var(--mainColor);
+}
+
+/* end comments */
+
+
+/* start footer */
+footer {
+  background-color: #1f2021;
+  color: wheat;
+  color: var(--mainColor);
+  padding: 15px;
+  width: 100%;
+}
+
+footer .content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 768px) {
+  footer {
+    text-align: center;
+  }
+}
+
+/* end footer */

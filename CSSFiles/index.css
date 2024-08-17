@@ -1,0 +1,369 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth
+}
+
+::selection {
+  background-color: black;
+  color: white;
+}
+
+body {
+  font-family: "work sans", sans-serif;
+}
+
+/* start variables */
+:root {
+  --mainColor: #ad893b;
+  --subColor: #997c54;
+}
+
+/* end variables */
+
+/* strat components */
+
+.center {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+/* end components */
+
+/* start header */
+header {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  /* background-color: #1b1b1bc7; */
+  background-color: #00000075;
+  color: var(--mainColor);
+}
+
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: #1b1b1bc7;/ */
+  margin-top: 1px;
+  position: relative;
+  max-height: 75px;
+  border-radius: 5px;
+}
+
+header .container .logo img {
+  margin-top: 10px;
+  width: 200px;
+  height: 135px;
+}
+
+header .container .links {
+  display: flex;
+  position: relative;
+}
+
+header .container .links ul {
+  list-style: none;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin-right: 50px;
+}
+
+header .container .toggle-menu {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+
+
+
+header .container .links ul li {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+header .container .links ul li a {
+  text-decoration: none;
+}
+
+header .container .links i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 25px;
+}
+
+header .container .links ul li a,
+header .container .links i {
+  cursor: pointer;
+  color: var(--mainColor);
+}
+
+@media (max-width: 768px) {
+  header .container .links {
+    display: none;
+  }
+
+  /* header .container .toggle-menu:hover+.links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #00000075;
+    } */
+
+  header .container .links ul li a {
+    margin-right: 10px;
+  }
+}
+
+@media (min-width:768px) {
+  header .container .toggle-menu {
+    display: none;
+  }
+
+}
+
+/* end header */
+
+/* start section 1 */
+
+header+section {
+  min-height: 100vh;
+  background-color: #1f2021;
+  background-image: url("../images/adult-1866533.jpg");
+  background-size: cover;
+  position: relative;
+  color: var(--mainColor);
+  text-shadow: #1f2021;
+}
+
+section .lay {
+  background-color: #00000092;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+header+section .content h1 {
+  text-shadow: 0 0 4px #f3d05c;
+  font-size: 3em;
+  color: black;
+  line-height: 1.8;
+
+}
+
+header+section .content p {
+  text-shadow: 0 0 3px var(--mainColor);
+  line-height: 1.8;
+  color: black;
+  font-size: 2em;
+}
+
+header+section .content .search {
+  width: 100%;
+  position: relative;
+}
+
+header+section .content .search i {
+  font-weight: 900;
+  color: black;
+  font-size: 1.5em;
+  position: absolute;
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+header+section .content .search input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 25px;
+  z-index: -1;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+header+section .content .search button {
+  position: absolute;
+  right: 2%;
+  border-radius: 25px;
+  padding: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--mainColor);
+  cursor: pointer;
+}
+
+header+section .content .search button:hover {
+  background-color: var(--subColor);
+}
+
+header+section .content .search input,
+header+section .content .search button {
+  border: none;
+  outline: none;
+}
+
+/* end section 1 */
+
+/* start section 2 */
+.section2 {
+  padding: 15px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.section2 .content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 80px;
+}
+
+.section2 .content .card {
+  max-width: 100vh;
+}
+
+.section2 .content .card img {
+  max-width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.section2 .content .card:hover img {
+  opacity: 0.5;
+  transition: 1s;
+  filter: grayscale(50%);
+  transform: scale(1.1, 1.1);
+}
+
+.special-heading {
+  color: var(--mainColor);
+  font-size: 100px;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: -3px;
+  margin: 0;
+  margin-top: 30px;
+  max-width: 100%;
+}
+
+@media (max-width:768px) {
+  .special-heading {
+    font-size: 70px;
+  }
+}
+
+/* Apply CSS to hide the input field */
+#inputData {
+  display: none;
+}
+
+.button {
+  background-size: cover;
+  /* Ensure the background image covers the entire button */
+  background-position: center;
+  /* Center the background image */
+  background-repeat: no-repeat;
+  /* Do not repeat the background image */
+  border: none;
+  /* Remove the default button border */
+  color: white;
+  /* Text color */
+  padding: 15px 30px;
+  /* Padding for better appearance */
+  font-size: 16px;
+  /* Font size */
+  cursor: pointer;
+  /* Add a pointer cursor on hover */
+  outline: none;
+  /* Remove the default focus outline */
+  border-radius: 10px;
+  /* Add some border-radius for rounded corners */
+  transition: background-color 0.3s, transform 0.3s;
+  /* Add a smooth transition for background color */
+
+  /* Optional: Add some box-shadow for a nice lift effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 100%;
+  min-height: 250px;
+}
+
+/* Change the background color on hover for a nice effect */
+.button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Add a semi-transparent black overlay on hover */
+  transform: scale(1.1, 1.1);
+  filter: grayscale(50%);
+  opacity: 0.5;
+  transition: 1s;
+}
+
+/* end section 2 */
+
+/* start footer */
+footer {
+  background-color: #1f2021;
+  color: wheat;
+  color: var(--mainColor);
+  padding: 15px;
+  width: 100%;
+}
+
+footer .content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 768px) {
+  footer {
+    text-align: center;
+  }
+}
+
+/* end footer */
